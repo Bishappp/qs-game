@@ -165,13 +165,13 @@ img{-webkit-user-drag:none}
 .mv-round.mv-muted img{opacity:.4;filter:grayscale(1)}
 .mv-emo{font-size:30px;line-height:1}
 
-.mv-stars-bar{width:100%;margin-top:12px;display:flex;align-items:center;gap:10px}
+.mv-stars-bar{width:100%;margin-top:12px;display:flex;align-items:center;gap:16px}
 .mv-track{position:relative;flex:1;height:14px;border-radius:99px;background:rgba(20,40,100,.2);
   box-shadow:inset 0 2px 4px rgba(10,20,70,.3),0 0 0 2px rgba(255,255,255,.7)}
 .mv-track span{display:block;height:100%;width:0;border-radius:99px;
   background:linear-gradient(90deg,#4fe0a4,#ffe066);box-shadow:inset 0 2px 0 rgba(255,255,255,.5);transition:width .4s cubic-bezier(.22,1,.36,1)}
-.mv-star{position:absolute;top:-8px;font-size:22px;font-style:normal;color:#c5d6e6;text-shadow:0 1px 0 #fff,0 0 0 #fff;transform:translateX(-50%)}
-.mv-star[data-s="1"]{left:40%}.mv-star[data-s="2"]{left:70%}.mv-star[data-s="3"]{left:100%}
+.mv-star{position:absolute;top:50%;line-height:1;font-size:24px;font-style:normal;color:#c5d6e6;text-shadow:0 1px 0 #fff,0 0 0 #fff;transform:translate(-50%,-52%)}
+.mv-star[data-s="1"]{left:40%}.mv-star[data-s="2"]{left:70%}.mv-star[data-s="3"]{left:96%}
 .mv-star.mv-lit{color:#ffc928;text-shadow:0 2px 0 #e08f00;animation:mv-pop .4s ease-out}
 .mv-stars-bar b{font-size:18px;font-weight:900;color:var(--ink);min-width:44px;text-align:right}
 
@@ -879,7 +879,7 @@ canvas#mv-canvas{display:block;border-radius:20px;touch-action:none}
     if (stars > S.stars) beep(700 + stars*120, .16, .05, "sine");
     S.stars = stars;
     var els = root.querySelectorAll(".mv-stars-bar .mv-star");
-    for (var i=0;i<els.length;i++) els[i].classList.toggle("mv-lit", i < stars);
+    for (var i=0;i<els.length;i++){ els[i].classList.toggle("mv-lit", i < stars); els[i].style.left = Math.min(96, tg[i]/tg[2]*100) + "%"; }
     $("#mv-b-paw").textContent = S.paws;
     $("#mv-b-shuffle").textContent = S.shuffles;
     root.querySelector('[data-boost="paw"]').classList.toggle("mv-empty", S.paws <= 0);
